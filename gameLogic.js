@@ -1,6 +1,8 @@
 var currentScreen = 1;
+var dayNight = 0; //0 = day, 1 = night
 
 function changeScreen(where) {
+	
 	
 	if (where == 'left') {
 		switch (currentScreen) {
@@ -37,6 +39,19 @@ function changeScreen(where) {
 			case 1: currentScreen = 5; break;
 		}
 	} 
+	
+	
+}
+
+var inventory = {
+	slots: 5,			//slots shown on the screen at the same time
+	objects: [], 		//list of objects in the inventory
+	activeObject: -1,	//active, chosen object (-1 mean no active object)
+	position: 0,		//current inventory position
+	
+	scrollDown: function () {},
+	scrollUp: function () {},
+	
 	
 	
 }
