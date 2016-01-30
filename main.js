@@ -6,6 +6,7 @@ var SCREEN_WIDTH = 600;
 var INVENTORY_WIDTH = 100;
 var GAME_HEIGHT = 500;
 var INTER_SIZE = 40;
+var IN_BUTTON_H = 30;
 
 var isGameOver = false;
 var gameTime = 0;
@@ -16,6 +17,7 @@ var mousePos = {x:0,y:0};
 // the game loop
 var lastTime;
 function main() {
+	
     var now = Date.now();
     var deltaTime = (now - lastTime) / 1000.0;
 
@@ -24,6 +26,8 @@ function main() {
 
     lastTime = now;
     requestAnimFrame(main);
+	
+	
 };
 
 // the update 
@@ -46,10 +50,10 @@ function render() {
 	
 	if (!isGameOver) {
 		//draw background
-		backgroundDraw();
+		backgroundRender();
 		
 		//draw inventory
-		inventoryDraw();
+		inventory.render();
 		
 		//draw any controls
 		
@@ -96,6 +100,14 @@ function handleMouseClick(event) {
 			changeScreen('bottom');
 		}		 
 		
+		//detect inventory scroll
+		if (pos.x > SCREEN_WIDTH && pos.y < IN_BUTTON_H) {
+			inventory.scrollUp();
+		}
+		else if (pos.x > SCREEN_WIDTH && pos.y > GAME_HEIGHT - IN_BUTTON_H) {
+			inventory.scrollDown();
+		}
+		
 		
 		//act accordingly
 		
@@ -128,6 +140,14 @@ function calcMousePos(event) {
 // start the game
 function init() {
 	reset();
+	inventory.addObject({name: 'test', color: 'white'});
+	inventory.addObject({name: 'test', color: 'pink'});
+	inventory.addObject({name: 'test', color: 'blue'});
+	inventory.addObject({name: 'test', color: 'yellow'});
+	inventory.addObject({name: 'test', color: 'black'});
+	inventory.addObject({name: 'test', color: 'green'});
+	inventory.addObject({name: 'test', color: 'violet'});
+	
     lastTime = Date.now();
     main();
 }

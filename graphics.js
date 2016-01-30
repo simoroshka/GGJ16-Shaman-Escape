@@ -1,12 +1,7 @@
 
-function backgroundDraw() {
+function backgroundRender() {
 	
 	context.drawImage(resources.get("img/bg"+currentScreen+".jpg"), 0, 0);	
-}
-
-function inventoryDraw() {
-	context.fillStyle = "red";
-	context.fillRect(600,0,700,500);
 }
 
 
